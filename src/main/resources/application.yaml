@@ -1,0 +1,65 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: postgresql
+    url: jdbc:postgresql://localhost:5432/postgres
+  jpa:
+    open-in-view: true # TODO: change to false later
+    show-sql: true
+    properties:
+      hibernate:
+        ddl-auto: none
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQL10Dialect
+        order_by.default_null_ordering: last
+  email:
+    host: smtp.gmail.com
+    port: 587
+    username: idkspbcorp@gmail.com
+    password: idkspbcorp777
+    properties.mail.smtp:
+      auth: true
+      starttls.enable: true
+  # For Handling NoHandlerFoundException
+  mvc:
+    throw-exception-if-no-handler-found: true
+  web:
+    resources:
+      add-mappings: false
+#JWT token
+jwt:
+  token:
+    secret: jwtdevblog
+    expired: 60 # minute
+#Mail
+mail:
+  name: IDK
+  email: idkspbcorp.com
+  url: http://localhost:8080/v1/users/[[userId]]/verify?code=[[code]]
+  subject: Подтверждение регистрации
+  content: >-
+    Приветствуем, [[name]]!<br>
+    Для подтверждения электронной почты и завершения процесса регистрации,
+    пожалуйста, пройдите по ссылке:<br>
+    <h3><a href="[[URL]]" target="_self">Подтвердить регистрацию</a></h3>
+    Если вы получили это письмо по ошибке, просто игнорируйте его.
+# Springdoc
+springdoc:
+  show-actuator: true
+  api-docs:
+    path: /api-docs
+# Actuator
+info:
+  app:
+    name: StudMess
+    description: Service for communication in the student environment
+    version: v1
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: '*'

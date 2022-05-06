@@ -39,13 +39,13 @@ public class UserEntity {
     Role role;
 
     @NonNull
-    String first_name;
+    String firstName;
 
     @NonNull
-    String middle_name;
+    String middleName;
 
     @NonNull
-    String last_name;
+    String lastName;
 
     @NonNull
     @ManyToOne(fetch = FetchType.LAZY)
@@ -56,7 +56,7 @@ public class UserEntity {
     String email;
     String phone;
 
-    Boolean enabled;
+    boolean enabled;
     String verificationCode;
 
     @Fetch(FetchMode.SUBSELECT)

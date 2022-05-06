@@ -1,5 +1,3 @@
-SET search_path TO studmess;
-
 -- Группы студентов
 CREATE TABLE IF NOT EXISTS groups
 (
