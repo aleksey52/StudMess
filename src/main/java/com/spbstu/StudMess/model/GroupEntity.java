@@ -34,4 +34,8 @@ public class GroupEntity {
     @Builder.Default
     @OneToMany(mappedBy = "group", cascade = CascadeType.ALL)
     List<UserEntity> users = new ArrayList<>();
+
+    public GroupEntity(@NonNull String name) {
+        this.name = name;
+    }
 }

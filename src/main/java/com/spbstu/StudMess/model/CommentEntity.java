@@ -47,4 +47,10 @@ public class CommentEntity {
 
     @Column(name = "updated_at")
     LocalDateTime updateDate;
+
+    public CommentEntity(@NonNull String content, @NonNull UserEntity sender, @NonNull TaskEntity task) {
+        this.content = content;
+        this.sender = sender;
+        this.task = task;
+    }
 }

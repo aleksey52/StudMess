@@ -32,4 +32,10 @@ public class LessonEntity {
 
     @NonNull
     Time lessonTime;
+
+    public LessonEntity(@NonNull Integer semester, @NonNull Integer weekDay, @NonNull Time lessonTime) {
+        this.semester = semester;
+        this.weekDay = weekDay;
+        this.lessonTime = lessonTime;
+    }
 }

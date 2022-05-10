@@ -6,6 +6,7 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -35,11 +36,21 @@ public class TaskEntity {
 
     @NonNull
     String name;
+    @Nullable
     String context;
+    @Nullable
     LocalDateTime deadline;
 
     @Fetch(FetchMode.SUBSELECT)
     @Builder.Default
     @OneToMany(mappedBy = "task", cascade = CascadeType.ALL)
     List<CommentEntity> comments = new ArrayList<>();
+
+    public TaskEntity(@NonNull ScheduleEntity schedule, @NonNull String name, @Nullable String context,
+                      @Nullable LocalDateTime deadline) {
+        this.schedule = schedule;
+        this.name = name;
+        this.context = context;
+        this.deadline = deadline;
+    }
 }

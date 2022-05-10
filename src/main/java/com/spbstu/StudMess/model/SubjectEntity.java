@@ -25,4 +25,8 @@ public class SubjectEntity {
 
     @NonNull
     String name;
+
+    public SubjectEntity(@NonNull String name) {
+        this.name = name;
+    }
 }

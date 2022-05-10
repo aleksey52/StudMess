@@ -16,6 +16,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 import java.util.function.Consumer;
@@ -89,6 +90,11 @@ public class UserService {
     @Transactional(readOnly = true)
     public Page<UserEntity> findAll(Pageable pageable) {
         return userRepository.findAll(pageable);
+    }
+
+    @Transactional(readOnly = true)
+    public List<UserEntity> findAllByUsersId(@NonNull List<Long> usersId) {
+        return userRepository.findByIdIn(usersId);
     }
 
     @Transactional

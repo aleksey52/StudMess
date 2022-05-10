@@ -31,4 +31,14 @@ public class TeacherEntity {
 
     @NonNull
     String lastName;
+
+    public TeacherEntity(@NonNull String firstName, @NonNull String middleName, @NonNull String lastName) {
+        this.firstName = firstName;
+        this.middleName = middleName;
+        this.lastName = lastName;
+    }
+
+    /* TODO
+    add subjects and personal info(phone e.t.c)
+     */
 }

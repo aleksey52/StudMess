@@ -47,4 +47,10 @@ public class MessageEntity {
 
     @Column(name = "updated_at")
     LocalDateTime updateDate;
+
+    public MessageEntity(@NonNull String content, @NonNull UserEntity sender, @NonNull ChatEntity chat) {
+        this.content = content;
+        this.sender = sender;
+        this.chat = chat;
+    }
 }

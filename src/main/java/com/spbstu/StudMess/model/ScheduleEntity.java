@@ -4,8 +4,12 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @DynamicInsert
 @DynamicUpdate
@@ -42,4 +46,17 @@ public class ScheduleEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "lesson_id")
     LessonEntity lesson;
+
+    @Fetch(FetchMode.SUBSELECT)
+    @Builder.Default
+    @OneToMany(mappedBy = "schedule", cascade = CascadeType.ALL)
+    List<TaskEntity> tasks = new ArrayList<>();
+
+    public ScheduleEntity(@NonNull GroupEntity group, @NonNull SubjectEntity subject, @NonNull TeacherEntity teacher,
+                          @NonNull LessonEntity lesson) {
+        this.group = group;
+        this.subject = subject;
+        this.teacher = teacher;
+        this.lesson = lesson;
+    }
 }

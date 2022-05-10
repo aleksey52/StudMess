@@ -1,4 +1,7 @@
 package com.spbstu.StudMess.repository;
 
-public interface TeacherRepository {
+import com.spbstu.StudMess.model.TeacherEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface TeacherRepository extends JpaRepository<TeacherEntity, Long> {
 }

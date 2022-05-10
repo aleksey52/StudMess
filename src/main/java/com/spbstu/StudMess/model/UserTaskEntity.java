@@ -4,6 +4,7 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 
@@ -35,5 +36,14 @@ public class UserTaskEntity {
 
     @NonNull
     Boolean done;
+    @Nullable
     Integer score;
+
+    public UserTaskEntity(@NonNull UserEntity user, @NonNull TaskEntity task, @NonNull Boolean done,
+                          @Nullable Integer score) {
+        this.user = user;
+        this.task = task;
+        this.done = done;
+        this.score = score;
+    }
 }
