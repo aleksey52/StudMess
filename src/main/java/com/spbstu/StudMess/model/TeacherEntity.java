@@ -4,6 +4,7 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 
@@ -32,13 +33,18 @@ public class TeacherEntity {
     @NonNull
     String lastName;
 
-    public TeacherEntity(@NonNull String firstName, @NonNull String middleName, @NonNull String lastName) {
+    @Nullable
+    String email;
+
+    @Nullable
+    String phone;
+
+    public TeacherEntity(@NonNull String firstName, @NonNull String middleName, @NonNull String lastName,
+                         @Nullable String email, @Nullable String phone) {
         this.firstName = firstName;
         this.middleName = middleName;
         this.lastName = lastName;
+        this.email = email;
+        this.phone = phone;
     }
-
-    /* TODO
-    add subjects and personal info(phone e.t.c)
-     */
 }

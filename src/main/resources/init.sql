@@ -1,3 +1,8 @@
+DROP SCHEMA studmess CASCADE;
+CREATE SCHEMA studmess;
+
+SET search_path TO studmess;
+
 -- Группы студентов
 CREATE TABLE IF NOT EXISTS groups
 (
@@ -32,8 +37,9 @@ CREATE TABLE IF NOT EXISTS users
 CREATE TABLE IF NOT EXISTS chats
 (
     id					SERIAL			PRIMARY KEY,
-    name				VARCHAR(60)		NULL,
+    name				VARCHAR(60)		NOT NULL,
     initiator_id		INT 			NOT NULL,
+    created_at 			TIMESTAMP 		NOT NULL DEFAULT NOW(),
 
     CONSTRAINT id_fk_chats__initiator_id__users FOREIGN KEY (initiator_id) REFERENCES users (id)
 );
@@ -79,7 +85,9 @@ CREATE TABLE IF NOT EXISTS teachers
     id           	SERIAL 			PRIMARY KEY,
     first_name   	VARCHAR(50) 	NOT NULL,
     middle_name  	VARCHAR(50) 	NOT NULL,
-    last_name    	VARCHAR(50) 	NOT NULL
+    last_name    	VARCHAR(50) 	NOT NULL,
+    email			VARCHAR(50) 	NULL,
+    phone           VARCHAR(20)		NULL
 );
 
 -- Календарь. Хранит ID семестра, дни недели и время лекций
@@ -99,7 +107,7 @@ CREATE TABLE IF NOT EXISTS schedule
     id          	SERIAL			PRIMARY KEY,
     group_id		INT 			NOT NULL,
     subject_id   	INT 			NOT NULL,
-    teacher_id		INT 			NOT NULL, -- будет в таблице lesson
+    teacher_id		INT 			NOT NULL,
     lesson_id		INT				NOT NULL,
 
     CONSTRAINT id_fk_schedule_groups	FOREIGN KEY (group_id) REFERENCES groups (id),
@@ -128,6 +136,7 @@ CREATE TABLE IF NOT EXISTS users_tasks
     done				BOOLEAN			NOT NULL DEFAULT FALSE,
     score				INT2			NULL,
 
+    CONSTRAINT unique_user_id_task_id UNIQUE (user_id, task_id),
     CONSTRAINT id_fk_users_tasks__user_id__users FOREIGN KEY (user_id) REFERENCES users (id),
     CONSTRAINT id_fk_users_tasks__task_id__tasks FOREIGN KEY (task_id) REFERENCES tasks (id)
 );

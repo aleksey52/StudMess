@@ -7,6 +7,7 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -54,9 +55,14 @@ public class UserEntity {
 
     @NonNull
     String email;
+
+    @Nullable
     String phone;
 
+    @NonNull
     boolean enabled;
+
+    @Nullable
     String verificationCode;
 
     @Fetch(FetchMode.SUBSELECT)

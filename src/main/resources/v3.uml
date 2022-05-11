@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>DATABASE</ID>
+  <OriginalElement>77624008-1164-49d8-a063-1d3788bb8f35</OriginalElement>
+  <nodes>
+    <node x="566.2241379310344" y="215.0">77624008-1164-49d8-a063-1d3788bb8f35.TABLE:postgres.studmess.users</node>
+    <node x="228.43247126436773" y="292.0">77624008-1164-49d8-a063-1d3788bb8f35.TABLE:postgres.studmess.schedule</node>
+    <node x="223.93247126436773" y="484.5097849722155">77624008-1164-49d8-a063-1d3788bb8f35.TABLE:postgres.studmess.tasks</node>
+    <node x="294.0" y="0.0">77624008-1164-49d8-a063-1d3788bb8f35.TABLE:postgres.studmess.teachers</node>
+    <node x="492.4588266086815" y="789.0">77624008-1164-49d8-a063-1d3788bb8f35.TABLE:postgres.studmess.comments</node>
+    <node x="483.0" y="44.0">77624008-1164-49d8-a063-1d3788bb8f35.TABLE:postgres.studmess.groups</node>
+    <node x="146.0" y="22.0">77624008-1164-49d8-a063-1d3788bb8f35.TABLE:postgres.studmess.lessons</node>
+    <node x="659.7889482716964" y="789.0">77624008-1164-49d8-a063-1d3788bb8f35.TABLE:postgres.studmess.messages</node>
+    <node x="842.4622993226749" y="647.0">77624008-1164-49d8-a063-1d3788bb8f35.TABLE:postgres.studmess.chats</node>
+    <node x="409.078304597701" y="484.5097849722156">77624008-1164-49d8-a063-1d3788bb8f35.TABLE:postgres.studmess.users_tasks</node>
+    <node x="862.4622993226749" y="518.0097849722156">77624008-1164-49d8-a063-1d3788bb8f35.TABLE:postgres.studmess.users_chats</node>
+    <node x="0.0" y="44.0">77624008-1164-49d8-a063-1d3788bb8f35.TABLE:postgres.studmess.subjects</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="77624008-1164-49d8-a063-1d3788bb8f35.TABLE:postgres.studmess.users" target="77624008-1164-49d8-a063-1d3788bb8f35.TABLE:postgres.studmess.groups" relationship="REFERENCES">
+      <point x="0.0" y="-148.5" />
+      <point x="650.7241379310344" y="82.5" />
+      <point x="605.0029492381135" y="82.5" />
+      <point x="605.0029492381135" y="85.58075622130949" />
+      <point x="588.5516781188118" y="85.58075622130949" />
+      <point x="42.551678118811765" y="6.161512442618985" />
+    </edge>
+    <edge source="77624008-1164-49d8-a063-1d3788bb8f35.TABLE:postgres.studmess.users_chats" target="77624008-1164-49d8-a063-1d3788bb8f35.TABLE:postgres.studmess.chats" relationship="REFERENCES">
+      <point x="-28.0" y="-38.0" />
+      <point x="890.4622993226749" y="578.9891882097126" />
+      <point x="918.4622993226749" y="578.9891882097126" />
+      <point x="0.0" y="60.5" />
+    </edge>
+    <edge source="77624008-1164-49d8-a063-1d3788bb8f35.TABLE:postgres.studmess.comments" target="77624008-1164-49d8-a063-1d3788bb8f35.TABLE:postgres.studmess.users" relationship="REFERENCES">
+      <point x="59.501283498533326" y="-89.72638318434406" />
+      <point x="629.5991379310344" y="792.7736168156559" />
+      <point x="629.5991379310344" y="581.0478376419425" />
+      <point x="-21.125" y="148.5" />
+    </edge>
+    <edge source="77624008-1164-49d8-a063-1d3788bb8f35.TABLE:postgres.studmess.comments" target="77624008-1164-49d8-a063-1d3788bb8f35.TABLE:postgres.studmess.tasks" relationship="REFERENCES">
+      <point x="0.0" y="-93.5" />
+      <point x="588.006664250624" y="789.0" />
+      <point x="588.006664250624" y="882.5" />
+      <point x="293.93247126436773" y="882.5" />
+      <point x="0.0" y="71.5" />
+    </edge>
+    <edge source="77624008-1164-49d8-a063-1d3788bb8f35.TABLE:postgres.studmess.schedule" target="77624008-1164-49d8-a063-1d3788bb8f35.TABLE:postgres.studmess.groups" relationship="REFERENCES">
+      <point x="49.125" y="-71.5" />
+      <point x="343.05747126436773" y="195.0" />
+      <point x="546.0" y="195.0" />
+      <point x="0.0" y="38.5" />
+    </edge>
+    <edge source="77624008-1164-49d8-a063-1d3788bb8f35.TABLE:postgres.studmess.schedule" target="77624008-1164-49d8-a063-1d3788bb8f35.TABLE:postgres.studmess.lessons" relationship="REFERENCES">
+      <point x="-16.375" y="-71.5" />
+      <point x="277.55747126436773" y="185.0" />
+      <point x="210.0" y="185.0" />
+      <point x="0.0" y="60.5" />
+    </edge>
+    <edge source="77624008-1164-49d8-a063-1d3788bb8f35.TABLE:postgres.studmess.users_chats" target="77624008-1164-49d8-a063-1d3788bb8f35.TABLE:postgres.studmess.users" relationship="REFERENCES">
+      <point x="-0.23678694438024195" y="-31.35600386566807" />
+      <point x="918.2255123782946" y="363.5" />
+      <point x="714.8865416124092" y="363.5" />
+      <point x="64.16240368137483" y="56.66767335105095" />
+    </edge>
+    <edge source="77624008-1164-49d8-a063-1d3788bb8f35.TABLE:postgres.studmess.users_tasks" target="77624008-1164-49d8-a063-1d3788bb8f35.TABLE:postgres.studmess.tasks" relationship="REFERENCES">
+      <point x="-56.0" y="-71.5" />
+      <point x="409.078304597701" y="556.0097849722156" />
+      <point x="293.93247126436773" y="556.0097849722156" />
+      <point x="0.0" y="71.5" />
+    </edge>
+    <edge source="77624008-1164-49d8-a063-1d3788bb8f35.TABLE:postgres.studmess.schedule" target="77624008-1164-49d8-a063-1d3788bb8f35.TABLE:postgres.studmess.subjects" relationship="REFERENCES">
+      <point x="-49.125" y="-71.5" />
+      <point x="244.80747126436773" y="195.0" />
+      <point x="63.0" y="195.0" />
+      <point x="0.0" y="38.5" />
+    </edge>
+    <edge source="77624008-1164-49d8-a063-1d3788bb8f35.TABLE:postgres.studmess.messages" target="77624008-1164-49d8-a063-1d3788bb8f35.TABLE:postgres.studmess.chats" relationship="REFERENCES">
+      <point x="51.66666666666666" y="-93.5" />
+      <point x="802.1906958757876" y="789.0" />
+      <point x="802.1906958757876" y="882.5" />
+      <point x="918.4622993226749" y="882.5" />
+      <point x="0.0" y="60.5" />
+    </edge>
+    <edge source="77624008-1164-49d8-a063-1d3788bb8f35.TABLE:postgres.studmess.schedule" target="77624008-1164-49d8-a063-1d3788bb8f35.TABLE:postgres.studmess.teachers" relationship="REFERENCES">
+      <point x="16.375" y="-71.5" />
+      <point x="310.30747126436773" y="185.0" />
+      <point x="378.5" y="185.0" />
+      <point x="0.0" y="82.5" />
+    </edge>
+    <edge source="77624008-1164-49d8-a063-1d3788bb8f35.TABLE:postgres.studmess.users_tasks" target="77624008-1164-49d8-a063-1d3788bb8f35.TABLE:postgres.studmess.users" relationship="REFERENCES">
+      <point x="28.0" y="-71.5" />
+      <point x="493.078304597701" y="518.7548924861078" />
+      <point x="465.078304597701" y="518.7548924861078" />
+      <point x="465.078304597701" y="363.5" />
+      <point x="566.2241379310344" y="363.5" />
+      <point x="-84.5" y="3.7273496013529552" />
+    </edge>
+    <edge source="77624008-1164-49d8-a063-1d3788bb8f35.TABLE:postgres.studmess.tasks" target="77624008-1164-49d8-a063-1d3788bb8f35.TABLE:postgres.studmess.schedule" relationship="REFERENCES">
+      <point x="0.0" y="-71.5" />
+      <point x="293.93247126436773" y="563.0" />
+      <point x="293.93247126436773" y="563.0" />
+      <point x="0.0" y="71.5" />
+    </edge>
+    <edge source="77624008-1164-49d8-a063-1d3788bb8f35.TABLE:postgres.studmess.chats" target="77624008-1164-49d8-a063-1d3788bb8f35.TABLE:postgres.studmess.users" relationship="REFERENCES">
+      <point x="-62.802624103114226" y="-2.3678424740276114" />
+      <point x="855.6596752195607" y="700.6574957719256" />
+      <point x="846.0341618105246" y="700.6574957719256" />
+      <point x="846.0341618105246" y="707.5" />
+      <point x="791.8906488846973" y="707.5" />
+      <point x="791.8906488846973" y="396.06172988644596" />
+      <point x="722.1056766691863" y="396.06172988644596" />
+      <point x="71.3815387381519" y="58.882701135539946" />
+    </edge>
+    <edge source="77624008-1164-49d8-a063-1d3788bb8f35.TABLE:postgres.studmess.messages" target="77624008-1164-49d8-a063-1d3788bb8f35.TABLE:postgres.studmess.users" relationship="REFERENCES">
+      <point x="-51.66666666666666" y="-93.5" />
+      <point x="699.2450823227258" y="789.0" />
+      <point x="48.52094439169139" y="150.13372795361192" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.831124497991968" showDependencies="false" x="423.1131664010056" y="308.2435370862527" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Columns</Category>
+    <Category>Comments</Category>
+    <Category>Key columns</Category>
+    <Category>Virtual foreign keys</Category>
+  </Categories>
+</Diagram>
+

@@ -36,8 +36,10 @@ public class TaskEntity {
 
     @NonNull
     String name;
+
     @Nullable
     String context;
+
     @Nullable
     LocalDateTime deadline;
 

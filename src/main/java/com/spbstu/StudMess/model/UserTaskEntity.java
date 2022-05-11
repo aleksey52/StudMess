@@ -36,6 +36,7 @@ public class UserTaskEntity {
 
     @NonNull
     Boolean done;
+
     @Nullable
     Integer score;
 

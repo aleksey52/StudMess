@@ -4,6 +4,7 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -27,6 +28,7 @@ public class MessageEntity {
     @NonNull
     String content;
 
+    @Nullable
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "to_id")
     UserEntity recipient;
@@ -45,6 +47,7 @@ public class MessageEntity {
     @Column(name = "created_at")
     LocalDateTime creationDate;
 
+    @Nullable
     @Column(name = "updated_at")
     LocalDateTime updateDate;
 

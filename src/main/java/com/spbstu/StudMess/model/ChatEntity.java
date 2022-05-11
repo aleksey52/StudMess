@@ -6,8 +6,10 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,12 +29,17 @@ public class ChatEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
+    @NonNull
     String name;
 
     @NonNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "initiator_id")
     UserEntity initiator;
+
+    @NonNull
+    @Column(name = "created_at")
+    LocalDateTime creationDate;
 
     @Fetch(FetchMode.SUBSELECT)
     @Builder.Default
@@ -48,4 +55,14 @@ public class ChatEntity {
             inverseJoinColumns = @JoinColumn(name = "user_id")
     )
     List<UserEntity> users = new ArrayList<>();
+
+    public ChatEntity(@NonNull String name, @NonNull UserEntity initiator) {
+        this.name = name;
+        this.initiator = initiator;
+    }
+
+    public ChatEntity(@NonNull String name, @NonNull UserEntity initiator, @NonNull UserEntity interlocutor) {
+        this.name = name;
+        this.initiator = initiator;
+    }
 }
