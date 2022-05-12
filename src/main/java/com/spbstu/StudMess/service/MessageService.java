@@ -12,6 +12,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
+
 @Service
 @RequiredArgsConstructor
 public class MessageService {
@@ -62,6 +64,7 @@ public class MessageService {
         final MessageEntity messageEntity = messageRepository.findByIdAndSenderIdAndChatId(id, senderId, chatId)
                 .orElseThrow(() -> new NotFoundException(MessageEntity.class, id.toString()));
         messageEntity.setContent(content);
+        messageEntity.setUpdateDate(LocalDateTime.now());
 
         return messageRepository.save(messageEntity);
     }
