@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
-@Table(name = "comments")
+@Table(name = "comments", schema = "studmess")
 public class CommentEntity {
 
     @Id

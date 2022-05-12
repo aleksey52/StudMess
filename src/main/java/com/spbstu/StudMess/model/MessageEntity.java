@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
-@Table(name = "messages")
+@Table(name = "messages", schema = "studmess")
 public class MessageEntity {
 
     @Id

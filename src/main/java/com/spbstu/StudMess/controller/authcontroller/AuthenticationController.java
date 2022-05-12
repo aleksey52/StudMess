@@ -36,7 +36,7 @@ public class AuthenticationController {
     public ResponseEntity<AuthenticationResponse> login(@NonNull @Valid @RequestBody AuthenticationRequest request) {
 
         AuthenticationResponse response = authenticationService.login(request.getEmail(), request.getPassword());
-        final String token = jwtTokenProvider.createToken(response.getLogin(), Role.valueOf(response.getRole()));
+        final String token = jwtTokenProvider.createToken(response.getEmail(), Role.valueOf(response.getRole()));
 
         return ResponseEntity.ok()
                 .header(HttpHeaders.AUTHORIZATION, TOKEN_PREFIX + token)

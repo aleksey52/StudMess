@@ -2,6 +2,7 @@ package com.spbstu.StudMess.dto.response;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.springframework.lang.Nullable;
 
 @Getter
 @Builder
@@ -23,5 +24,6 @@ public class UserResponse {
     String group;
     @NonNull
     String email;
+    @Nullable
     String phone;
 }

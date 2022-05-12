@@ -17,6 +17,6 @@ public class AuthenticationRequest {
     @Email(regexp = ".+@.+\\..+", message = "Please provide a valid email address")
     String email;
     @NotBlank(message = "Password is required")
-    @Size(min = 8, max = 45, message = "The password must be from 8 to 45 characters")
+    //@Size(min = 8, max = 45, message = "The password must be from 8 to 45 characters")
     String password;
 }

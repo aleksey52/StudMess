@@ -17,7 +17,7 @@ import java.sql.Time;
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
-@Table(name = "lessons")
+@Table(name = "lessons", schema = "studmess")
 public class LessonEntity {
 
     @Id

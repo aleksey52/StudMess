@@ -11,6 +11,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Objects;
+
 import static java.lang.String.format;
 
 @Service
@@ -35,7 +37,10 @@ public class GroupService {
 
     @NonNull
     @Transactional(readOnly = true)
-    public Page<GroupEntity> findAll(Pageable pageable) {
+    public Page<GroupEntity> findAll(String groupNameContains, Pageable pageable) {
+        if (Objects.nonNull(groupNameContains) && !groupNameContains.isEmpty()) {
+            return groupRepository.findGroupEntitiesByNameContains(groupNameContains, pageable);
+        }
         return groupRepository.findAll(pageable);
     }
 

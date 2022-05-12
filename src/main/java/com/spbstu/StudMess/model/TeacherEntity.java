@@ -17,7 +17,7 @@ import javax.persistence.*;
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
-@Table(name = "teachers")
+@Table(name = "teachers", schema = "studmess")
 public class TeacherEntity {
 
     @Id

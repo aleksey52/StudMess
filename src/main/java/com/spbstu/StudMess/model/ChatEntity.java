@@ -22,7 +22,7 @@ import java.util.List;
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
-@Table(name = "chats")
+@Table(name = "chats", schema = "studmess")
 public class ChatEntity {
 
     @Id

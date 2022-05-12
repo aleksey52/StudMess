@@ -20,7 +20,7 @@ import java.util.List;
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
-@Table(name = "groups")
+@Table(name = "groups", schema = "studmess")
 public class GroupEntity {
 
     @Id

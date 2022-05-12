@@ -13,6 +13,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Objects;
+
 import static java.lang.String.format;
 
 @Service
@@ -37,7 +39,10 @@ public class SubjectService {
 
     @NonNull
     @Transactional(readOnly = true)
-    public Page<SubjectEntity> findAll(Pageable pageable) {
+    public Page<SubjectEntity> findAll(String subjectNameContains, Pageable pageable) {
+        if (Objects.nonNull(subjectNameContains) && !subjectNameContains.isEmpty()) {
+            return subjectRepository.findSubjectEntitiesByNameContains(subjectNameContains, pageable);
+        }
         return subjectRepository.findAll(pageable);
     }
 
