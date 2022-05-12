@@ -60,9 +60,4 @@ public class ChatEntity {
         this.name = name;
         this.initiator = initiator;
     }
-
-    public ChatEntity(@NonNull String name, @NonNull UserEntity initiator, @NonNull UserEntity interlocutor) {
-        this.name = name;
-        this.initiator = initiator;
-    }
 }

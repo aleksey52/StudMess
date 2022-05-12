@@ -66,7 +66,7 @@ public class ChatService {
         final String name = initiator.getLastName() + " " + initiator.getFirstName() + ", " +
                 interlocutor.getLastName() + " " + interlocutor.getFirstName();
 
-        final ChatEntity chatEntity = new ChatEntity(name, initiator, interlocutor);
+        final ChatEntity chatEntity = new ChatEntity(name, initiator);
         chatEntity.setUsers(List.of(initiator, interlocutor));
 
         return chatRepository.save(chatEntity);
@@ -81,12 +81,6 @@ public class ChatService {
 
         if (usersId != null) {
             List<UserEntity> users = userService.findAllByUsersId(usersId);
-//            for (Long id : usersId) {
-//                users.add(userService.findById(id));
-//            }
-            /*  TODO
-                заменить цикл на метод из userService, связанный с findByIdIn
-             */
             chatEntity.setUsers(users);
         } else {
             chatEntity.setUsers(List.of(initiator));
@@ -112,7 +106,7 @@ public class ChatService {
 
             List<UserEntity> newUsers = usersId.stream()
                     .filter(userId -> !existUsersId.contains(userId))
-                    .map(userService::findById) // check
+                    .map(userService::findById)
                     .collect(Collectors.toList());
 
             ArrayList<UserEntity> users = new ArrayList<>(existUsers);
