@@ -2,10 +2,8 @@ package com.spbstu.StudMess.dto.response;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-import org.springframework.lang.Nullable;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Getter
 @Builder
@@ -21,8 +19,4 @@ public class OpenChatResponse {
     Long initiatorId;
     @NonNull
     LocalDateTime creationDate;
-//    @Nullable
-//    List<MessageResponse> messages;
-//    @NonNull
-//    List<UserResponse> users;
 }

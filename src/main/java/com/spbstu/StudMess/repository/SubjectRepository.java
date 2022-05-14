@@ -1,7 +1,5 @@
 package com.spbstu.StudMess.repository;
 
-import com.spbstu.StudMess.model.ChatEntity;
-import com.spbstu.StudMess.model.GroupEntity;
 import com.spbstu.StudMess.model.SubjectEntity;
 import lombok.NonNull;
 import org.springframework.data.domain.Page;

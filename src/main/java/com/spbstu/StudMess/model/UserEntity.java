@@ -59,7 +59,6 @@ public class UserEntity {
     @Nullable
     String phone;
 
-    @NonNull
     boolean enabled;
 
     @Nullable

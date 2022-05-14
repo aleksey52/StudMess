@@ -1,8 +1,6 @@
 package com.spbstu.StudMess.repository;
 
-import com.spbstu.StudMess.model.ChatEntity;
 import com.spbstu.StudMess.model.CommentEntity;
-import com.spbstu.StudMess.model.MessageEntity;
 import lombok.NonNull;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

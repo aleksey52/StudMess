@@ -3,7 +3,6 @@ package com.spbstu.StudMess.dto.request;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NonNull;
 import lombok.experimental.FieldDefaults;
 import org.springframework.lang.Nullable;
 

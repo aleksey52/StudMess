@@ -1,7 +1,9 @@
 package com.spbstu.StudMess.dto.request;
 
-import com.spbstu.StudMess.model.ScheduleEntity;
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.lang.Nullable;
 

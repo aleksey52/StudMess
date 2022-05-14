@@ -30,7 +30,7 @@ public class UserTaskService {
 
     @NonNull
     @Transactional(readOnly = true)
-    Page<UserTaskEntity> findAllByUserId(@NonNull Long userId, Pageable pageable) {
+    public Page<UserTaskEntity> findAllByUserId(@NonNull Long userId, Pageable pageable) {
         return userTaskRepository.findAllByUserId(userId, pageable);
     }
 

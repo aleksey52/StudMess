@@ -20,4 +20,6 @@ public interface MessageRepository extends JpaRepository<MessageEntity, Long> {
 
     Optional<MessageEntity> findByIdAndSenderIdAndChatId(@NonNull Long messageId, @NonNull Long senderId,
                                                          @NonNull Long chatId);
+
+    Optional<MessageEntity> findFirstByChatIdOrderByCreationDateDesc(@NonNull Long chatId);
 }

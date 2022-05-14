@@ -2,9 +2,7 @@ package com.spbstu.StudMess.service;
 
 import com.spbstu.StudMess.exception.NonUniqueValueException;
 import com.spbstu.StudMess.exception.NotFoundException;
-import com.spbstu.StudMess.model.GroupEntity;
 import com.spbstu.StudMess.model.SubjectEntity;
-import com.spbstu.StudMess.repository.GroupRepository;
 import com.spbstu.StudMess.repository.SubjectRepository;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;

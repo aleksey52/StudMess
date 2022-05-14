@@ -40,12 +40,6 @@ public class ChatService {
 
     @NonNull
     @Transactional(readOnly = true)
-    public Page<ChatEntity> findAllByIncomingUser(@NonNull Long userId, Pageable pageable) {
-        return chatRepository.findAllByIncomingUser(userId, pageable); // сортировка по последнему сообщению, а потом по дате создания чата
-    }
-
-    @NonNull
-    @Transactional(readOnly = true)
     public Page<ChatEntity> findAllByIncomingUser(@NonNull Long userId, @Nullable String nameContains, Pageable pageable) {
         Page<ChatEntity> chatEntities;
         if (Objects.isNull(nameContains)) {
@@ -91,10 +85,16 @@ public class ChatService {
 
     @NonNull
     @Transactional
-    public ChatEntity update(@NonNull Long chatId, @NonNull String name, @Nullable List<Long> usersId) {
+    public ChatEntity update(@NonNull Long initiatorId, @NonNull Long chatId,
+                             @NonNull String name, @Nullable List<Long> usersId) {
 
         final ChatEntity chatEntity = chatRepository.findById(chatId).orElseThrow(() ->
                 new NotFoundException(ChatEntity.class, chatId.toString()));
+        if (chatEntity.getInitiator().getId().equals(initiatorId)) {
+            chatRepository.delete(chatEntity);
+        } else {
+            throw new RuntimeException("There are no rights to update, because you are not the initiator of this chat");
+        }
 
         chatEntity.setName(name);
 
@@ -118,10 +118,14 @@ public class ChatService {
     }
 
     @Transactional
-    public void delete(@NonNull Long id) {
-        final ChatEntity chatEntity = chatRepository.findById(id).orElseThrow(() ->
-                new NotFoundException(ChatEntity.class, id.toString()));
-        chatRepository.delete(chatEntity);
+    public void delete(@NonNull Long initiatorId, @NonNull Long chatId) {
+        final ChatEntity chatEntity = chatRepository.findById(chatId).orElseThrow(() ->
+                new NotFoundException(ChatEntity.class, chatId.toString()));
+        if (chatEntity.getInitiator().getId().equals(initiatorId)) {
+            chatRepository.delete(chatEntity);
+        } else {
+            throw new RuntimeException("There are no rights to delete, because you are not the initiator of this chat");
+        }
     }
 
     @Transactional

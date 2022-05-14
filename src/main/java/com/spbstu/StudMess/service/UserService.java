@@ -97,6 +97,12 @@ public class UserService {
         return userRepository.findByIdIn(usersId);
     }
 
+    @NonNull
+    @Transactional(readOnly = true)
+    public Page<UserEntity> findAllByChatId(@NonNull Long chatId, Pageable pageable) {
+        return userRepository.findAllByChatId(chatId, pageable);
+    }
+
     @Transactional
     public UserEntity findByLogin(@NonNull String login) {
         return userRepository.findByLogin(login).orElseThrow(() ->

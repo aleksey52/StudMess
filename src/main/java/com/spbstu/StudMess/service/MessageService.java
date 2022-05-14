@@ -44,25 +44,36 @@ public class MessageService {
                 new NotFoundException(MessageEntity.class, id.toString()));
     }
 
-    @NonNull
     @Transactional(readOnly = true)
-    Page<MessageEntity> findAllByChatId(@NonNull Long chatId, Pageable pageable) {
+    public MessageEntity findLastByChatId(@NonNull Long chatId) {
+        return messageRepository.findFirstByChatIdOrderByCreationDateDesc(chatId).orElseThrow(() ->
+                new NotFoundException(MessageEntity.class, "chatId", chatId.toString()));
+    }
+
+    @Transactional(readOnly = true)
+    public Page<MessageEntity> findAllByChatId(@NonNull Long chatId, Pageable pageable) {
         return messageRepository.findAllByChatId(chatId, pageable);
     }
 
-    Page<MessageEntity> findAllBySenderId(@NonNull Long senderId, Pageable pageable) {
+    @Transactional(readOnly = true)
+    public Page<MessageEntity> findAllBySenderId(@NonNull Long senderId, Pageable pageable) {
         return messageRepository.findAllBySenderId(senderId, pageable);
     }
 
-    Page<MessageEntity> findAllBySenderIdAndChatId(@NonNull Long senderId, @NonNull Long chatId, Pageable pageable) {
+    @Transactional(readOnly = true)
+    public Page<MessageEntity> findAllBySenderIdAndChatId(@NonNull Long senderId, @NonNull Long chatId, Pageable pageable) {
         return messageRepository.findAllBySenderIdAndChatId(senderId, chatId, pageable);
     }
 
     @NonNull
     @Transactional
-    public MessageEntity update(@NonNull Long id, @NonNull Long senderId, @NonNull Long chatId, @NonNull String content) {
+    public MessageEntity update(@NonNull Long id, @NonNull Long senderId, @NonNull Long chatId, @NonNull String content,
+                                Long recipientId) {
         final MessageEntity messageEntity = messageRepository.findByIdAndSenderIdAndChatId(id, senderId, chatId)
                 .orElseThrow(() -> new NotFoundException(MessageEntity.class, id.toString()));
+        final UserEntity recipient = userService.findById(recipientId);
+
+        messageEntity.setRecipient(recipient);
         messageEntity.setContent(content);
         messageEntity.setUpdateDate(LocalDateTime.now());
 

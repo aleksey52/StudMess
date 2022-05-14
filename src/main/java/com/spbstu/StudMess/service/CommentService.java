@@ -39,30 +39,34 @@ public class CommentService {
 
     @NonNull
     @Transactional(readOnly = true)
-    public CommentEntity findByIdAndSenderIdAndChatId(@NonNull Long id, @NonNull Long senderId, @NonNull Long taskId) {
+    public CommentEntity findByIdAndSenderIdAndTaskId(@NonNull Long id, @NonNull Long senderId, @NonNull Long taskId) {
         return commentRepository.findByIdAndSenderIdAndTaskId(id, senderId, taskId).orElseThrow(() ->
                 new NotFoundException(CommentEntity.class, id.toString()));
     }
 
     @NonNull
     @Transactional(readOnly = true)
-    Page<CommentEntity> findAllByTaskId(@NonNull Long taskId, Pageable pageable) {
+    public Page<CommentEntity> findAllByTaskId(@NonNull Long taskId, Pageable pageable) {
         return commentRepository.findAllByTaskId(taskId, pageable);
     }
 
-    Page<CommentEntity> findAllBySenderId(@NonNull Long senderId, Pageable pageable) {
+    public Page<CommentEntity> findAllBySenderId(@NonNull Long senderId, Pageable pageable) {
         return commentRepository.findAllBySenderId(senderId, pageable);
     }
 
-    Page<CommentEntity> findAllBySenderIdAndTaskId(@NonNull Long senderId, @NonNull Long taskId, Pageable pageable) {
+    public Page<CommentEntity> findAllBySenderIdAndTaskId(@NonNull Long senderId, @NonNull Long taskId, Pageable pageable) {
         return commentRepository.findAllBySenderIdAndTaskId(senderId, taskId, pageable);
     }
 
     @NonNull
     @Transactional
-    public CommentEntity update(@NonNull Long id, @NonNull Long senderId, @NonNull Long taskId, @NonNull String content) {
+    public CommentEntity update(@NonNull Long id, @NonNull Long senderId, @NonNull Long taskId, @NonNull String content,
+                                Long recipientId) {
         final CommentEntity commentEntity = commentRepository.findByIdAndSenderIdAndTaskId(id, senderId, taskId)
                 .orElseThrow(() -> new NotFoundException(CommentEntity.class, id.toString()));
+        final UserEntity recipient = userService.findById(recipientId);
+
+        commentEntity.setRecipient(recipient);
         commentEntity.setContent(content);
         commentEntity.setUpdateDate(LocalDateTime.now());
 
