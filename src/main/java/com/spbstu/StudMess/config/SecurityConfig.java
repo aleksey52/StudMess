@@ -28,7 +28,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             "/v1/schedule/**",
             "/v1/subjects/**",
             "/v1/tasks/**",
-            "/v1/teachers/**",
             "/v1/teachers/**"
     };
     private static final String[] OPEN_API_URLS = {

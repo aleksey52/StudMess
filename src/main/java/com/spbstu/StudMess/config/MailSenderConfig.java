@@ -12,5 +12,4 @@ public class MailSenderConfig {
     public JavaMailSender javaMailSender() {
         return new JavaMailSenderImpl();
     }
-
 }
