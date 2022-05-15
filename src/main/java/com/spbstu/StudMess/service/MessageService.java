@@ -1,5 +1,6 @@
 package com.spbstu.StudMess.service;
 
+import com.spbstu.StudMess.dto.request.AttachmentRequest;
 import com.spbstu.StudMess.exception.NotFoundException;
 import com.spbstu.StudMess.model.ChatEntity;
 import com.spbstu.StudMess.model.MessageEntity;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -24,7 +26,8 @@ public class MessageService {
 
     @NonNull
     @Transactional
-    public MessageEntity create(@NonNull Long senderId, @NonNull Long chatId, @NonNull String content, Long recipientId) {
+    public MessageEntity create(@NonNull Long senderId, @NonNull Long chatId, @NonNull String content, Long recipientId,
+                                List<AttachmentRequest> attachments) {
         final ChatEntity chatEntity = chatService.findById(chatId);
         final UserEntity sender = userService.findById(senderId);
         final MessageEntity messageEntity = new MessageEntity(content, sender, chatEntity);
@@ -68,7 +71,7 @@ public class MessageService {
     @NonNull
     @Transactional
     public MessageEntity update(@NonNull Long id, @NonNull Long senderId, @NonNull Long chatId, @NonNull String content,
-                                Long recipientId) {
+                                Long recipientId, List<AttachmentRequest> attachments) {
         final MessageEntity messageEntity = messageRepository.findByIdAndSenderIdAndChatId(id, senderId, chatId)
                 .orElseThrow(() -> new NotFoundException(MessageEntity.class, id.toString()));
         final UserEntity recipient = userService.findById(recipientId);

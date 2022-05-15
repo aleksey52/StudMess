@@ -2,7 +2,9 @@ package com.spbstu.StudMess.controller;
 
 import com.spbstu.StudMess.controller.annotation.ApiV1;
 import com.spbstu.StudMess.dto.request.MessageRequest;
+import com.spbstu.StudMess.dto.response.AttachmentResponse;
 import com.spbstu.StudMess.dto.response.MessageResponse;
+import com.spbstu.StudMess.model.AttachmentEntity;
 import com.spbstu.StudMess.model.MessageEntity;
 import com.spbstu.StudMess.service.MessageService;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -15,6 +17,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 
 @Tag(name = "User message")
 @ApiV1
@@ -29,7 +33,8 @@ public class UserMessageController {
     public MessageResponse create(@NonNull @PathVariable Long userId,
                                   @NonNull @PathVariable Long chatId,
                                   @NonNull @Valid @RequestBody MessageRequest request) {
-        return toResponse(messageService.create(userId, chatId, request.getContent(), request.getRecipientId()));
+        return toResponse(messageService.create(userId, chatId, request.getContent(), request.getRecipientId(),
+                request.getAttachments()));
     }
 
     @GetMapping("/users/{userId}/chats/{chatId}/messages")
@@ -64,11 +69,16 @@ public class UserMessageController {
                                   @NonNull @PathVariable Long messageId,
                                   @NonNull @Valid @RequestBody MessageRequest request) {
         return toResponse(messageService.update(messageId, userId, chatId, request.getContent(),
-                request.getRecipientId()));
+                request.getRecipientId(), request.getAttachments()));
     }
 
     @NonNull
     private MessageResponse toResponse(@NonNull MessageEntity message) {
+        List<AttachmentResponse> attachments = new ArrayList<>();
+        for (AttachmentEntity attachment : message.getAttachments()) {
+            attachments.add(new AttachmentResponse(attachment.getId(), attachment.getName(), attachment.getUrl(),
+                    message.getId().intValue()));
+        }
         return MessageResponse.builder()
                 .id(message.getId())
                 .content(message.getContent())
@@ -83,6 +93,7 @@ public class UserMessageController {
                 .chatId(message.getChat().getId())
                 .creationDate(message.getCreationDate())
                 .updateDate(message.getUpdateDate())
+                .attachments(attachments)
                 .build();
     }
 }

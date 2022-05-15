@@ -4,10 +4,14 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @DynamicInsert
 @DynamicUpdate
@@ -50,6 +54,11 @@ public class MessageEntity {
     @Nullable
     @Column(name = "updated_at")
     LocalDateTime updateDate;
+
+    @Fetch(FetchMode.SUBSELECT)
+    @Builder.Default
+    @OneToMany(mappedBy = "message", cascade = CascadeType.ALL)
+    List<AttachmentEntity> attachments = new ArrayList<>();
 
     public MessageEntity(@NonNull String content, @NonNull UserEntity sender, @NonNull ChatEntity chat) {
         this.content = content;

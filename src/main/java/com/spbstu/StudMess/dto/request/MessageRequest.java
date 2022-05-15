@@ -9,6 +9,7 @@ import org.springframework.lang.Nullable;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Getter
 @AllArgsConstructor
@@ -21,4 +22,7 @@ public class MessageRequest {
     String content;
     @Nullable
     Long recipientId;
+    @Nullable
+    @Size(max = 10, message = "The maximum number of attachments is 10")
+    List<AttachmentRequest> attachments;
 }

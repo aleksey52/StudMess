@@ -5,6 +5,7 @@ import lombok.experimental.FieldDefaults;
 import org.springframework.lang.Nullable;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Builder
@@ -30,4 +31,6 @@ public class MessageResponse {
     LocalDateTime creationDate;
     @Nullable
     LocalDateTime updateDate;
+    @Nullable
+    List<AttachmentResponse> attachments;
 }
