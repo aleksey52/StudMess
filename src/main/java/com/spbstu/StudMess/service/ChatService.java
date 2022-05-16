@@ -90,9 +90,7 @@ public class ChatService {
 
         final ChatEntity chatEntity = chatRepository.findById(chatId).orElseThrow(() ->
                 new NotFoundException(ChatEntity.class, chatId.toString()));
-        if (chatEntity.getInitiator().getId().equals(initiatorId)) {
-            chatRepository.delete(chatEntity);
-        } else {
+        if (!chatEntity.getInitiator().getId().equals(initiatorId)) {
             throw new RuntimeException("There are no rights to update, because you are not the initiator of this chat");
         }
 

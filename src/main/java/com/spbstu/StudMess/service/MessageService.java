@@ -23,6 +23,7 @@ public class MessageService {
     private final MessageRepository messageRepository;
     private final ChatService chatService;
     private final UserService userService;
+    private final FileStorageService fileStorageService;
 
     @NonNull
     @Transactional

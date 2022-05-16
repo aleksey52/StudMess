@@ -1,5 +1,7 @@
 package com.spbstu.StudMess.service;
 
+import com.spbstu.StudMess.repository.AttachmentRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
@@ -14,8 +16,10 @@ import java.nio.file.Paths;
 import java.util.stream.Stream;
 
 @Service
+@RequiredArgsConstructor
 public class FileStorageService {
 
+    private final AttachmentRepository attachmentRepository;
     private final Path path = Paths.get("fileStorage");
 
     public void init() {
